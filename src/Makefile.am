@@ -64,15 +64,15 @@ bin_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += gormintd
+  bin_PROGRAMS += steaddcoind
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += gormint-cli gormint-tx
+  bin_PROGRAMS += steaddcoin-cli steaddcoin-tx
 endif
 
 .PHONY: FORCE
-# gormint core #
+# steaddcoin core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrman.h \
@@ -180,7 +180,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between gormintd and gormint-qt
+# server: shared between steaddcoind and steaddcoin-qt
 libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS)
 libbitcoin_server_a_SOURCES = \
   addrman.cpp \
@@ -224,7 +224,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between gormintd and gormint-qt, but only linked
+# wallet: shared between steaddcoind and steaddcoin-qt, but only linked
 # when wallet enabled
 
 libbitcoin_wallet_a_CFLAGS = -fPIC
@@ -295,7 +295,7 @@ univalue_libbitcoin_univalue_a_SOURCES = \
   univalue/univalue_escapes.h \
   univalue/univalue.h
 
-# common: shared between gormintd, and gormint-qt and non-server tools
+# common: shared between steaddcoind, and steaddcoin-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_common_a_SOURCES = \
   allocators.cpp \
@@ -351,7 +351,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 libbitcoin_util_a_SOURCES += compat/glibcxx_compat.cpp
 endif
 
-# cli: shared between gormint-cli and gormint-qt
+# cli: shared between steaddcoin-cli and steaddcoin-qt
 libbitcoin_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_SOURCES = \
   rpcclient.cpp \
@@ -361,7 +361,7 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-gormintd_LDADD = \
+steaddcoind_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UNIVALUE) \
@@ -372,40 +372,40 @@ gormintd_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-gormintd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+steaddcoind_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-gormintd_LDADD += libbitcoin_wallet.a
+steaddcoind_LDADD += libbitcoin_wallet.a
 endif
-gormintd_SOURCES = gormintd.cpp
+steaddcoind_SOURCES = steaddcoind.cpp
 #
 
 if TARGET_WINDOWS
-gormintd_SOURCES += gormintd-res.rc
+steaddcoind_SOURCES += steaddcoind-res.rc
 endif
 
-gormintd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
-gormintd_CPPFLAGS = $(BITCOIN_INCLUDES)
-gormintd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+steaddcoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
+steaddcoind_CPPFLAGS = $(BITCOIN_INCLUDES)
+steaddcoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 
-# gormint-cli binary #
-gormint_cli_LDADD = \
+# steaddcoin-cli binary #
+steaddcoin_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBBITCOIN_UTIL) \
   $(BOOST_LIBS) \
   $(SSL_LIBS) \
   $(CRYPTO_LIBS)
 
-gormint_cli_SOURCES = \
-  gormint-cli.cpp
+steaddcoin_cli_SOURCES = \
+  steaddcoin-cli.cpp
 
-gormint_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
+steaddcoin_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
 
-# gormint-tx binary #
-gormint_tx_LDADD = \
+# steaddcoin-tx binary #
+steaddcoin_tx_LDADD = \
   $(LIBBITCOIN_UNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -414,15 +414,15 @@ gormint_tx_LDADD = \
   $(BOOST_LIBS) \
   $(CRYPTO_LIBS)
 
-gormint_tx_SOURCES = gormint-tx.cpp
-gormint_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+steaddcoin_tx_SOURCES = steaddcoin-tx.cpp
+steaddcoin_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
-gormint_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+steaddcoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-gormint_cli_SOURCES += gormint-cli-res.rc
+steaddcoin_cli_SOURCES += steaddcoin-cli-res.rc
 endif
-gormint_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+steaddcoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h

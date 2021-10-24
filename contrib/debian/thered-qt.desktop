@@ -1,12 +1,12 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=gormint
-Comment=gormint P2P Cryptocurrency
-Comment[fr]=gormint, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=gormint, eşten eşe kriptografik sanal para birimi
-Exec=gormint-qt %u
+Name=steaddcoin
+Comment=steaddcoin P2P Cryptocurrency
+Comment[fr]=steaddcoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=steaddcoin, eşten eşe kriptografik sanal para birimi
+Exec=steaddcoin-qt %u
 Terminal=false
 Type=Application
-Icon=gormint128
-MimeType=x-scheme-handler/gormint;
+Icon=steaddcoin128
+MimeType=x-scheme-handler/steaddcoin;
 Categories=Office;Finance;

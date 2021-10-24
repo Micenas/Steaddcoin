@@ -1,10 +1,10 @@
 Sample configuration files for:
 
-SystemD: gormintd.service
-Upstart: gormintd.conf
-OpenRC:  gormintd.openrc
-         gormintd.openrcconf
-CentOS:  gormintd.init
+SystemD: steaddcoind.service
+Upstart: steaddcoind.conf
+OpenRC:  steaddcoind.openrc
+         steaddcoind.openrcconf
+CentOS:  steaddcoind.init
 
 have been made available to assist packagers in creating node packages here.
 

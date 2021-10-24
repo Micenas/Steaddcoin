@@ -44,7 +44,7 @@ public:
         DatabaseCache,       // int
         SpendZeroConfChange, // bool
         ObfuscationRounds,   // int
-        AnonymizegormintAmount, //int
+        AnonymizesteaddcoinAmount, //int
         ShowMasternodesTab,  // bool
         Listen,              // bool
         OptionIDRowCount,
@@ -90,7 +90,7 @@ private:
 signals:
     void displayUnitChanged(int unit);
     void obfuscationRoundsChanged(int);
-    void anonymizegormintAmountChanged(int);
+    void anonymizesteaddcoinAmountChanged(int);
     void coinControlFeaturesChanged(bool);
 };
 

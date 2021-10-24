@@ -2,24 +2,24 @@
 
 # backward compatibility for existing gentoo layout
 #
-if [ -d "/var/lib/gormint/.gormint" ]; then
-	BITCOIND_DEFAULT_DATADIR="/var/lib/gormint/.gormint"
+if [ -d "/var/lib/steaddcoin/.steaddcoin" ]; then
+	BITCOIND_DEFAULT_DATADIR="/var/lib/steaddcoin/.steaddcoin"
 else
-	BITCOIND_DEFAULT_DATADIR="/var/lib/gormintd"
+	BITCOIND_DEFAULT_DATADIR="/var/lib/steaddcoind"
 fi
 
-BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/gormint/gormint.conf}
-BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/gormintd}
-BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/gormintd.pid}
+BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/steaddcoin/steaddcoin.conf}
+BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/steaddcoind}
+BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/steaddcoind.pid}
 BITCOIND_DATADIR=${BITCOIND_DATADIR:-${BITCOIND_DEFAULT_DATADIR}}
-BITCOIND_USER=${BITCOIND_USER:-gormint}
-BITCOIND_GROUP=${BITCOIND_GROUP:-gormint}
-BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/gormintd}
+BITCOIND_USER=${BITCOIND_USER:-steaddcoin}
+BITCOIND_GROUP=${BITCOIND_GROUP:-steaddcoin}
+BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/steaddcoind}
 
-name="gormint Core Daemon"
-description="gormint crypto-currency p2p network daemon"
+name="steaddcoin Core Daemon"
+description="steaddcoin crypto-currency p2p network daemon"
 
-command="/usr/bin/gormintd"
+command="/usr/bin/steaddcoind"
 command_args="-pid=\"${BITCOIND_PIDFILE}\" \
 		-conf=\"${BITCOIND_CONFIGFILE}\" \
 		-datadir=\"${BITCOIND_DATADIR}\" \
@@ -65,7 +65,7 @@ checkconfig()
 {
 	if ! grep -qs '^rpcpassword=' "${BITCOIND_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run gormintd."
+		eerror "ERROR: You must set a secure rpcpassword to run steaddcoind."
 		eerror "The setting must appear in ${BITCOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "
@@ -78,7 +78,7 @@ checkconfig()
 		eerror "It is also recommended that you also set alertnotify so you are "
 		eerror "notified of problems:"
 		eerror ""
-		eerror "ie: alertnotify=echo %%s | mail -s \"gormint Alert\"" \
+		eerror "ie: alertnotify=echo %%s | mail -s \"steaddcoin Alert\"" \
 			"admin@foo.com"
 		eerror ""
 		return 1

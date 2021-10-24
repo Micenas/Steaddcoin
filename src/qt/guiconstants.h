@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The gormint developers
+// Copyright (c) 2015-2017 The steaddcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,7 +13,7 @@ static const int MODEL_UPDATE_DELAY = 250;
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPHRASE_SIZE = 1024;
 
-/* gormint GUI -- Size of icons in status bar */
+/* steaddcoin GUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 16;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -48,9 +48,9 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 35
 
-#define QAPP_ORG_NAME "gormint"
-#define QAPP_ORG_DOMAIN "gormint.org"
-#define QAPP_APP_NAME_DEFAULT "gormint-Qt"
-#define QAPP_APP_NAME_TESTNET "gormint-Qt-testnet"
+#define QAPP_ORG_NAME "steaddcoin"
+#define QAPP_ORG_DOMAIN "steaddcoin.org"
+#define QAPP_APP_NAME_DEFAULT "steaddcoin-Qt"
+#define QAPP_APP_NAME_TESTNET "steaddcoin-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

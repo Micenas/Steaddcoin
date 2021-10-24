@@ -1,6 +1,6 @@
 [Protocol]
-exec=gormint-qt '%u'
-protocol=gormint
+exec=steaddcoin-qt '%u'
+protocol=steaddcoin
 input=none
 output=none
 helper=true

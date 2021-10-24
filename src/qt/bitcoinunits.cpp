@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The gormint developers
+// Copyright (c) 2015-2017 The steaddcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -41,11 +41,11 @@ QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
     case PIE:
-        return QString("GMT");
+        return QString("STDC");
     case mPIE:
-        return QString("mGMT");
+        return QString("mSTDC");
     case uPIE:
-        return QString::fromUtf8("uGMT");
+        return QString::fromUtf8("uSTDC");
     default:
         return QString("???");
     }
@@ -56,22 +56,22 @@ QString BitcoinUnits::name(int unit)
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
         case PIE:
-            return QString("GMT");
+            return QString("STDC");
         case mPIE:
-            return QString("mGMT");
+            return QString("mSTDC");
         case uPIE:
-            return QString::fromUtf8("μGMT");
+            return QString::fromUtf8("μSTDC");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
         case PIE:
-            return QString("tGMT");
+            return QString("tSTDC");
         case mPIE:
-            return QString("mtGMT");
+            return QString("mtSTDC");
         case uPIE:
-            return QString::fromUtf8("μtGMT");
+            return QString::fromUtf8("μtSTDC");
         default:
             return QString("???");
         }
@@ -83,22 +83,22 @@ QString BitcoinUnits::description(int unit)
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
         case PIE:
-            return QString("GMT");
+            return QString("STDC");
         case mPIE:
-            return QString("Milli-GMT (1 / 1" THIN_SP_UTF8 "000)");
+            return QString("Milli-STDC (1 / 1" THIN_SP_UTF8 "000)");
         case uPIE:
-            return QString("Micro-GMT (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            return QString("Micro-STDC (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
         case PIE:
-            return QString("TestGMT");
+            return QString("TestSTDC");
         case mPIE:
-            return QString("Milli-TestGMT (1 / 1" THIN_SP_UTF8 "000)");
+            return QString("Milli-TestSTDC (1 / 1" THIN_SP_UTF8 "000)");
         case uPIE:
-            return QString("Micro-TestGMT (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            return QString("Micro-TestSTDC (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }

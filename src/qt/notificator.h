@@ -6,7 +6,7 @@
 #define BITCOIN_QT_NOTIFICATOR_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/gormint-config.h"
+#include "config/steaddcoin-config.h"
 #endif
 
 #include <QIcon>

@@ -78,7 +78,7 @@ HEADERS += src/activemasternode.h \
            src/crypter.h \
            src/obfuscation-relay.h \
            src/obfuscation.h \
-           src/gormint-config.h \
+           src/steaddcoin-config.h \
            src/db.h \
            src/eccryptoverify.h \
            src/ecwrapper.h \
@@ -131,7 +131,7 @@ HEADERS += src/activemasternode.h \
            src/wallet_ismine.h \
            src/walletdb.h \
            src/compat/sanity.h \
-           src/config/gormint-config.h \
+           src/config/steaddcoin-config.h \
            src/crypto/common.h \
            src/crypto/hmac_sha256.h \
            src/crypto/hmac_sha512.h \
@@ -333,7 +333,7 @@ HEADERS += src/activemasternode.h \
            src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.h \
            src/crypto/aes_helper.c \
            src/qt/bitcoinamountfield.moc \
-           src/qt/gormint.moc \
+           src/qt/steaddcoin.moc \
            src/qt/intro.moc \
            src/qt/overviewpage.moc \
            src/qt/rpcconsole.moc \
@@ -374,9 +374,9 @@ SOURCES += src/activemasternode.cpp \
            src/crypter.cpp \
            src/obfuscation-relay.cpp \
            src/obfuscation.cpp \
-           src/gormint-cli.cpp \
-           src/gormint-tx.cpp \
-           src/gormint.cpp \
+           src/steaddcoin-cli.cpp \
+           src/steaddcoin-tx.cpp \
+           src/steaddcoin.cpp \
            src/db.cpp \
            src/eccryptoverify.cpp \
            src/ecwrapper.cpp \
@@ -471,8 +471,8 @@ SOURCES += src/activemasternode.cpp \
            src/qt/coincontroltreewidget.cpp \
            src/qt/csvmodelwriter.cpp \
            src/qt/obfuscationconfig.cpp \
-           src/qt/gormint.cpp \
-           src/qt/gormintstrings.cpp \
+           src/qt/steaddcoin.cpp \
+           src/qt/steaddcoinstrings.cpp \
            src/qt/editaddressdialog.cpp \
            src/qt/guiutil.cpp \
            src/qt/intro.cpp \
@@ -550,7 +550,7 @@ SOURCES += src/activemasternode.cpp \
            src/test/sighash_tests.cpp \
            src/test/sigopcount_tests.cpp \
            src/test/skiplist_tests.cpp \
-           src/test/test_gormint.cpp \
+           src/test/test_steaddcoin.cpp \
            src/test/timedata_tests.cpp \
            src/test/transaction_tests.cpp \
            src/test/uint256_tests.cpp \
@@ -641,21 +641,21 @@ SOURCES += src/activemasternode.cpp \
            src/leveldb/helpers/memenv/memenv.cc \
            src/leveldb/helpers/memenv/memenv_test.cc \
            src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.c
-RESOURCES += src/qt/gormint.qrc src/qt/gormint_locale.qrc
+RESOURCES += src/qt/steaddcoin.qrc src/qt/steaddcoin_locale.qrc
 
-TRANSLATIONS += src/qt/locale/gormint_bg.ts \
-                src/qt/locale/gormint_de.ts \
-                src/qt/locale/gormint_en.ts \
-                src/qt/locale/gormint_es.ts \
-                src/qt/locale/gormint_fi.ts \
-                src/qt/locale/gormint_fr.ts \
-                src/qt/locale/gormint_it.ts \
-                src/qt/locale/gormint_ja.ts \
-                src/qt/locale/gormint_pl.ts \
-                src/qt/locale/gormint_pt.ts \
-                src/qt/locale/gormint_ru.ts \
-                src/qt/locale/gormint_sk.ts \
-                src/qt/locale/gormint_sv.ts \
-                src/qt/locale/gormint_vi.ts \
-                src/qt/locale/gormint_zh_CN.ts \
-                src/qt/locale/gormint_zh_TW.ts
+TRANSLATIONS += src/qt/locale/steaddcoin_bg.ts \
+                src/qt/locale/steaddcoin_de.ts \
+                src/qt/locale/steaddcoin_en.ts \
+                src/qt/locale/steaddcoin_es.ts \
+                src/qt/locale/steaddcoin_fi.ts \
+                src/qt/locale/steaddcoin_fr.ts \
+                src/qt/locale/steaddcoin_it.ts \
+                src/qt/locale/steaddcoin_ja.ts \
+                src/qt/locale/steaddcoin_pl.ts \
+                src/qt/locale/steaddcoin_pt.ts \
+                src/qt/locale/steaddcoin_ru.ts \
+                src/qt/locale/steaddcoin_sk.ts \
+                src/qt/locale/steaddcoin_sv.ts \
+                src/qt/locale/steaddcoin_vi.ts \
+                src/qt/locale/steaddcoin_zh_CN.ts \
+                src/qt/locale/steaddcoin_zh_TW.ts

@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The gormint developers
+// Copyright (c) 2015-2017 The steaddcoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -41,7 +41,7 @@ using namespace boost;
 using namespace std;
 
 #if defined(NDEBUG)
-#error "gormint cannot be compiled without assertions."
+#error "steaddcoin cannot be compiled without assertions."
 #endif
 
 /**
@@ -1655,11 +1655,11 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
         ret = blockValue / 2;
     } else if (nHeight >= 243201)  {
         int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
-        int64_t mNodeCoins = mnodeman.size() * 250000 * COIN;
+        int64_t mNodeCoins = mnodeman.size() * 38000 * COIN;
 
         //if a mn count is inserted into the function we are looking for a specific result for a masternode count
         if(nMasternodeCount)
-            mNodeCoins = nMasternodeCount * 250000 * COIN;
+            mNodeCoins = nMasternodeCount * 38000 * COIN;
 
         // Use this log to compare the masternode count for different clients
         LogPrintf("Adjusting seesaw at height %d with %d masternodes (without drift: %d) at %ld\n", nHeight, nMasternodeCount, nMasternodeCount - Params().MasternodeCountDrift(), GetTime());
@@ -2267,7 +2267,7 @@ static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck()
 {
-    RenameThread("gormint-scriptch");
+    RenameThread("steaddcoin-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -3362,7 +3362,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 nHeight = (*mi).second->nHeight + 1;
         }
 
-        // gormint
+        // steaddcoin
         // It is entierly possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.

@@ -1,7 +1,7 @@
-TESTS += test/test_gormint test/bitcoin-util-test.py
-bin_PROGRAMS += test/test_gormint
+TESTS += test/test_steaddcoin test/bitcoin-util-test.py
+bin_PROGRAMS += test/test_steaddcoin
 TEST_SRCDIR = test
-TEST_BINARY=test/test_gormint$(EXEEXT)
+TEST_BINARY=test/test_steaddcoin$(EXEEXT)
 
 
 EXTRA_DIST += \
@@ -63,7 +63,7 @@ BITCOIN_TESTS =\
   test/sighash_tests.cpp \
   test/sigopcount_tests.cpp \
   test/skiplist_tests.cpp \
-  test/test_gormint.cpp \
+  test/test_steaddcoin.cpp \
   test/timedata_tests.cpp \
   test/transaction_tests.cpp \
   test/uint256_tests.cpp \
@@ -77,22 +77,22 @@ BITCOIN_TESTS += \
   test/rpc_wallet_tests.cpp
 endif
 
-test_test_gormint_SOURCES = $(BITCOIN_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
-test_test_gormint_CPPFLAGS = $(BITCOIN_INCLUDES) -I$(builddir)/test/ $(TESTDEFS)
-test_test_gormint_LDADD = $(LIBBITCOIN_SERVER) $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
+test_test_steaddcoin_SOURCES = $(BITCOIN_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
+test_test_steaddcoin_CPPFLAGS = $(BITCOIN_INCLUDES) -I$(builddir)/test/ $(TESTDEFS)
+test_test_steaddcoin_LDADD = $(LIBBITCOIN_SERVER) $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
   $(BOOST_LIBS) $(BOOST_UNIT_TEST_FRAMEWORK_LIB) $(LIBSECP256K1)
 if ENABLE_WALLET
-test_test_gormint_LDADD += $(LIBBITCOIN_WALLET)
+test_test_steaddcoin_LDADD += $(LIBBITCOIN_WALLET)
 endif
 
-test_test_gormint_LDADD += $(LIBBITCOIN_CONSENSUS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
-test_test_gormint_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -static
+test_test_steaddcoin_LDADD += $(LIBBITCOIN_CONSENSUS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
+test_test_steaddcoin_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -static
 
 if ENABLE_ZMQ
-test_test_gormint_LDADD += $(ZMQ_LIBS)
+test_test_steaddcoin_LDADD += $(ZMQ_LIBS)
 endif
 
-nodist_test_test_gormint_SOURCES = $(GENERATED_TEST_FILES)
+nodist_test_test_steaddcoin_SOURCES = $(GENERATED_TEST_FILES)
 
 $(BITCOIN_TESTS): $(GENERATED_TEST_FILES)
 
@@ -100,13 +100,13 @@ CLEAN_BITCOIN_TEST = test/*.gcda test/*.gcno $(GENERATED_TEST_FILES)
 
 CLEANFILES += $(CLEAN_BITCOIN_TEST)
 
-gormint_test: $(TEST_BINARY)
+steaddcoin_test: $(TEST_BINARY)
 
-gormint_test_check: $(TEST_BINARY) FORCE
+steaddcoin_test_check: $(TEST_BINARY) FORCE
 	$(MAKE) check-TESTS TESTS=$^
 
-gormint_test_clean : FORCE
-	rm -f $(CLEAN_BITCOIN_TEST) $(test_test_gormint_OBJECTS) $(TEST_BINARY)
+steaddcoin_test_clean : FORCE
+	rm -f $(CLEAN_BITCOIN_TEST) $(test_test_steaddcoin_OBJECTS) $(TEST_BINARY)
 
 check-local:
 	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C secp256k1 check

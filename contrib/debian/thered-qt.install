@@ -1,6 +1,6 @@
-usr/local/bin/gormint-qt usr/bin
+usr/local/bin/steaddcoin-qt usr/bin
 share/pixmaps/bitcoin32.xpm usr/share/pixmaps
 share/pixmaps/bitcoin16.xpm usr/share/pixmaps
 share/pixmaps/bitcoin128.png usr/share/pixmaps
-debian/gormint-qt.desktop usr/share/applications
-debian/gormint-qt.protocol usr/share/kde4/services/
+debian/steaddcoin-qt.desktop usr/share/applications
+debian/steaddcoin-qt.protocol usr/share/kde4/services/

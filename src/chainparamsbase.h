@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between gormint-cli and gormintd)
- * of a given instance of the gormint system.
+ * CBaseChainParams defines the base parameters (shared between steaddcoin-cli and steaddcoind)
+ * of a given instance of the steaddcoin system.
  */
 class CBaseChainParams
 {

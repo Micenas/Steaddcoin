@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/gormint-config.h"
+#include "config/steaddcoin-config.h"
 #endif
 
 #include "optionsdialog.h"
@@ -213,7 +213,7 @@ void OptionsDialog::setMapper()
 
     /* Obfuscation Rounds */
     mapper->addMapping(ui->obfuscationRounds, OptionsModel::ObfuscationRounds);
-    mapper->addMapping(ui->anonymizegormint, OptionsModel::AnonymizegormintAmount);
+    mapper->addMapping(ui->anonymizesteaddcoin, OptionsModel::AnonymizesteaddcoinAmount);
     mapper->addMapping(ui->showMasternodesTab, OptionsModel::ShowMasternodesTab);
 }
 

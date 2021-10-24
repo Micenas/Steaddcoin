@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The gormint developers
+// Copyright (c) 2015-2017 The steaddcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -30,7 +30,7 @@ using namespace std;
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// gormintMiner
+// steaddcoinMiner
 //
 
 //
@@ -424,7 +424,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     {
         LOCK(cs_main);
         if (pblock->hashPrevBlock != chainActive.Tip()->GetBlockHash())
-            return error("gormintMiner : generated block is stale");
+            return error("steaddcoinMiner : generated block is stale");
     }
 
     // Remove key from key pool
@@ -439,7 +439,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     // Process this block the same as if we had received it from another node
     CValidationState state;
     if (!ProcessNewBlock(state, NULL, pblock))
-        return error("gormintMiner : ProcessNewBlock, block not accepted");
+        return error("steaddcoinMiner : ProcessNewBlock, block not accepted");
 
     return true;
 }
@@ -450,9 +450,9 @@ bool fGenerateBitcoins = false;
 
 void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 {
-    LogPrintf("gormintMiner started\n");
+    LogPrintf("steaddcoinMiner started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
-    RenameThread("gormint-miner");
+    RenameThread("steaddcoin-miner");
 
     // Each thread has its own key and counter
     CReserveKey reservekey(pwallet);
@@ -524,7 +524,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             continue;
         }
 
-        LogPrintf("Running gormintMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
+        LogPrintf("Running steaddcoinMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
             ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
         //

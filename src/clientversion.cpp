@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both gormintd and gormint-qt, to make it harder for attackers to
+ * for both steaddcoind and steaddcoin-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("gormint Core");
+const std::string CLIENT_NAME("steaddcoin Core");
 
 /**
  * Client version number

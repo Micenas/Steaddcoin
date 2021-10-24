@@ -95,7 +95,7 @@ public:
 };
 
 /**
- * gormint RPC command dispatcher.
+ * steaddcoin RPC command dispatcher.
  */
 class CRPCTable
 {

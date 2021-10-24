@@ -17,7 +17,7 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/gormint-project/gormint
+url=https://github.com/steaddcoin-project/steaddcoin
 proc=2
 mem=2000
 lxc=true
@@ -31,7 +31,7 @@ commitFiles=true
 read -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the gormint, gitian-builder, gitian.sigs, and gormint-detached-sigs.
+Run this script from the directory containing the steaddcoin, gitian-builder, gitian.sigs, and steaddcoin-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/gormint-project/gormint
+-u|--url	Specify the URL of the repository. Default is https://github.com/steaddcoin-project/steaddcoin
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -232,8 +232,8 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/gormint-project/gitian.sigs.git
-    git clone https://github.com/gormint-project/gormint-detached-sigs.git
+    git clone https://github.com/steaddcoin-project/gitian.sigs.git
+    git clone https://github.com/steaddcoin-project/steaddcoin-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -247,7 +247,7 @@ then
 fi
 
 # Set up build
-pushd ./gormint
+pushd ./steaddcoin
 git fetch
 git checkout ${COMMIT}
 popd
@@ -256,7 +256,7 @@ popd
 if [[ $build = true ]]
 then
 	# Make output folder
-	mkdir -p ./gormint-binaries/${VERSION}
+	mkdir -p ./steaddcoin-binaries/${VERSION}
 
 	# Build Dependencies
 	echo ""
@@ -266,7 +266,7 @@ then
 	mkdir -p inputs
 	wget -N -P inputs $osslPatchUrl
 	wget -N -P inputs $osslTarUrl
-	make -C ../gormint/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../steaddcoin/depends download SOURCES_PATH=`pwd`/cache/common
 
 	# Linux
 	if [[ $linux = true ]]
@@ -274,9 +274,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit gormint=${COMMIT} --url gormint=${url} ../gormint/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../gormint/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/gormint-*.tar.gz build/out/src/gormint-*.tar.gz ../gormint-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit steaddcoin=${COMMIT} --url steaddcoin=${url} ../steaddcoin/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../steaddcoin/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/steaddcoin-*.tar.gz build/out/src/steaddcoin-*.tar.gz ../steaddcoin-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -284,10 +284,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit gormint=${COMMIT} --url gormint=${url} ../gormint/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../gormint/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/gormint-*-win-unsigned.tar.gz inputs/gormint-win-unsigned.tar.gz
-	    mv build/out/gormint-*.zip build/out/gormint-*.exe ../gormint-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit steaddcoin=${COMMIT} --url steaddcoin=${url} ../steaddcoin/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../steaddcoin/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/steaddcoin-*-win-unsigned.tar.gz inputs/steaddcoin-win-unsigned.tar.gz
+	    mv build/out/steaddcoin-*.zip build/out/steaddcoin-*.exe ../steaddcoin-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -295,10 +295,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit gormint=${COMMIT} --url gormint=${url} ../gormint/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../gormint/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/gormint-*-osx-unsigned.tar.gz inputs/gormint-osx-unsigned.tar.gz
-	    mv build/out/gormint-*.tar.gz build/out/gormint-*.dmg ../gormint-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit steaddcoin=${COMMIT} --url steaddcoin=${url} ../steaddcoin/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../steaddcoin/contrib/gitian-descriptors/gitian-osx.yml
+	    mv build/out/steaddcoin-*-osx-unsigned.tar.gz inputs/steaddcoin-osx-unsigned.tar.gz
+	    mv build/out/steaddcoin-*.tar.gz build/out/steaddcoin-*.dmg ../steaddcoin-binaries/${VERSION}
 	fi
 	popd
 
@@ -325,27 +325,27 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../gormint/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../steaddcoin/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../gormint/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../steaddcoin/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../gormint/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../steaddcoin/contrib/gitian-descriptors/gitian-osx.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../gormint/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../steaddcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../gormint/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../steaddcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
 	popd
 fi
 
@@ -360,10 +360,10 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../gormint/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../gormint/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/gormint-*win64-setup.exe ../gormint-binaries/${VERSION}
-	    mv build/out/gormint-*win32-setup.exe ../gormint-binaries/${VERSION}
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../steaddcoin/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../steaddcoin/contrib/gitian-descriptors/gitian-win-signer.yml
+	    mv build/out/steaddcoin-*win64-setup.exe ../steaddcoin-binaries/${VERSION}
+	    mv build/out/steaddcoin-*win32-setup.exe ../steaddcoin-binaries/${VERSION}
 	fi
 	# Sign Mac OSX
 	if [[ $osx = true ]]
@@ -371,9 +371,9 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../gormint/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../gormint/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/gormint-osx-signed.dmg ../gormint-binaries/${VERSION}/gormint-${VERSION}-osx.dmg
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../steaddcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../steaddcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    mv build/out/steaddcoin-osx-signed.dmg ../steaddcoin-binaries/${VERSION}/steaddcoin-${VERSION}-osx.dmg
 	fi
 	popd
 

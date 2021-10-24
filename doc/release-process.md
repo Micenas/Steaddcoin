@@ -3,7 +3,7 @@ Release Process
 
 Before every release candidate:
 
-* Update translations (ping Fuzzbawls on Slack) see [translation_process.md](https://github.com/gormint-Project/gormint/blob/master/doc/translation_process.md#synchronising-translations).
+* Update translations (ping Fuzzbawls on Slack) see [translation_process.md](https://github.com/steaddcoin-Project/steaddcoin/blob/master/doc/translation_process.md#synchronising-translations).
 
 Before every minor and major release:
 
@@ -24,12 +24,12 @@ If you're using the automated script (found in [contrib/gitian-build.sh](/contri
 Check out the source code in the following directory hierarchy.
 
     cd /path/to/your/toplevel/build
-    git clone https://github.com/gormint-project/gitian.sigs.git
-    git clone https://github.com/gormint-project/gormint-detached-sigs.git
+    git clone https://github.com/steaddcoin-project/gitian.sigs.git
+    git clone https://github.com/steaddcoin-project/steaddcoin-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
-    git clone https://github.com/gormint-project/gormint.git
+    git clone https://github.com/steaddcoin-project/steaddcoin.git
 
-### gormint maintainers/release engineers, suggestion for writing release notes
+### steaddcoin maintainers/release engineers, suggestion for writing release notes
 
 Write release notes. git shortlog helps a lot, for example:
 
@@ -50,7 +50,7 @@ If you're using the automated script (found in [contrib/gitian-build.sh](/contri
 
 Setup Gitian descriptors:
 
-    pushd ./gormint
+    pushd ./steaddcoin
     export SIGNER=(your Gitian key, ie bluematt, sipa, etc)
     export VERSION=(new version, e.g. 0.8.0)
     git fetch
@@ -84,7 +84,7 @@ Create the OS X SDK tarball, see the [OS X readme](README_osx.md) for details, a
 By default, Gitian will fetch source files as needed. To cache them ahead of time:
 
     pushd ./gitian-builder
-    make -C ../gormint/depends download SOURCES_PATH=`pwd`/cache/common
+    make -C ../steaddcoin/depends download SOURCES_PATH=`pwd`/cache/common
     popd
 
 Only missing files will be fetched, so this is safe to re-run for each build.
@@ -92,50 +92,50 @@ Only missing files will be fetched, so this is safe to re-run for each build.
 NOTE: Offline builds must use the --url flag to ensure Gitian fetches only from local URLs. For example:
 
     pushd ./gitian-builder
-    ./bin/gbuild --url gormint=/path/to/gormint,signature=/path/to/sigs {rest of arguments}
+    ./bin/gbuild --url steaddcoin=/path/to/steaddcoin,signature=/path/to/sigs {rest of arguments}
     popd
 
 The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 
-### Build and sign gormint Core for Linux, Windows, and OS X:
+### Build and sign steaddcoin Core for Linux, Windows, and OS X:
 
     pushd ./gitian-builder
-    ./bin/gbuild --memory 3000 --commit gormint=v${VERSION} ../gormint/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../gormint/contrib/gitian-descriptors/gitian-linux.yml
-    mv build/out/gormint-*.tar.gz build/out/src/gormint-*.tar.gz ../
+    ./bin/gbuild --memory 3000 --commit steaddcoin=v${VERSION} ../steaddcoin/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../steaddcoin/contrib/gitian-descriptors/gitian-linux.yml
+    mv build/out/steaddcoin-*.tar.gz build/out/src/steaddcoin-*.tar.gz ../
 
-    ./bin/gbuild --memory 3000 --commit gormint=v${VERSION} ../gormint/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../gormint/contrib/gitian-descriptors/gitian-win.yml
-    mv build/out/gormint-*-win-unsigned.tar.gz inputs/gormint-win-unsigned.tar.gz
-    mv build/out/gormint-*.zip build/out/gormint-*.exe ../
+    ./bin/gbuild --memory 3000 --commit steaddcoin=v${VERSION} ../steaddcoin/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../steaddcoin/contrib/gitian-descriptors/gitian-win.yml
+    mv build/out/steaddcoin-*-win-unsigned.tar.gz inputs/steaddcoin-win-unsigned.tar.gz
+    mv build/out/steaddcoin-*.zip build/out/steaddcoin-*.exe ../
 
-    ./bin/gbuild --memory 3000 --commit gormint=v${VERSION} ../gormint/contrib/gitian-descriptors/gitian-osx.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../gormint/contrib/gitian-descriptors/gitian-osx.yml
-    mv build/out/gormint-*-osx-unsigned.tar.gz inputs/gormint-osx-unsigned.tar.gz
-    mv build/out/gormint-*.tar.gz build/out/gormint-*.dmg ../
+    ./bin/gbuild --memory 3000 --commit steaddcoin=v${VERSION} ../steaddcoin/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../steaddcoin/contrib/gitian-descriptors/gitian-osx.yml
+    mv build/out/steaddcoin-*-osx-unsigned.tar.gz inputs/steaddcoin-osx-unsigned.tar.gz
+    mv build/out/steaddcoin-*.tar.gz build/out/steaddcoin-*.dmg ../
     popd
 
 Build output expected:
 
-  1. source tarball (`gormint-${VERSION}.tar.gz`)
-  2. linux 32-bit and 64-bit dist tarballs (`gormint-${VERSION}-linux[32|64].tar.gz`)
-  3. windows 32-bit and 64-bit unsigned installers and dist zips (`gormint-${VERSION}-win[32|64]-setup-unsigned.exe`, `gormint-${VERSION}-win[32|64].zip`)
-  4. OS X unsigned installer and dist tarball (`gormint-${VERSION}-osx-unsigned.dmg`, `gormint-${VERSION}-osx64.tar.gz`)
+  1. source tarball (`steaddcoin-${VERSION}.tar.gz`)
+  2. linux 32-bit and 64-bit dist tarballs (`steaddcoin-${VERSION}-linux[32|64].tar.gz`)
+  3. windows 32-bit and 64-bit unsigned installers and dist zips (`steaddcoin-${VERSION}-win[32|64]-setup-unsigned.exe`, `steaddcoin-${VERSION}-win[32|64].zip`)
+  4. OS X unsigned installer and dist tarball (`steaddcoin-${VERSION}-osx-unsigned.dmg`, `steaddcoin-${VERSION}-osx64.tar.gz`)
   5. Gitian signatures (in `gitian.sigs/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/`)
 
 ### Verify other gitian builders signatures to your own. (Optional)
 
 Add other gitian builders keys to your gpg keyring, and/or refresh keys.
 
-    gpg --import gormint/contrib/gitian-keys/*.pgp
+    gpg --import steaddcoin/contrib/gitian-keys/*.pgp
     gpg --refresh-keys
 
 Verify the signatures
 
     pushd ./gitian-builder
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../gormint/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../gormint/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../gormint/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../steaddcoin/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../steaddcoin/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../steaddcoin/contrib/gitian-descriptors/gitian-osx.yml
     popd
 
 ### Next steps:
@@ -156,22 +156,22 @@ Codesigner only: Create Windows/OS X detached signatures:
 
 Codesigner only: Sign the osx binary:
 
-    transfer gormint-osx-unsigned.tar.gz to osx for signing
-    tar xf gormint-osx-unsigned.tar.gz
+    transfer steaddcoin-osx-unsigned.tar.gz to osx for signing
+    tar xf steaddcoin-osx-unsigned.tar.gz
     ./detached-sig-create.sh -s "Key ID"
     Enter the keychain password and authorize the signature
     Move signature-osx.tar.gz back to the gitian host
 
 Codesigner only: Sign the windows binaries:
 
-    tar xf gormint-win-unsigned.tar.gz
+    tar xf steaddcoin-win-unsigned.tar.gz
     ./detached-sig-create.sh -key /path/to/codesign.key
     Enter the passphrase for the key when prompted
     signature-win.tar.gz will be created
 
 Codesigner only: Commit the detached codesign payloads:
 
-    cd ~/gormint-detached-sigs
+    cd ~/steaddcoin-detached-sigs
     checkout the appropriate branch for this release series
     rm -rf *
     tar xf signature-osx.tar.gz
@@ -184,25 +184,25 @@ Codesigner only: Commit the detached codesign payloads:
 Non-codesigners: wait for Windows/OS X detached signatures:
 
 - Once the Windows/OS X builds each have 3 matching signatures, they will be signed with their respective release keys.
-- Detached signatures will then be committed to the [gormint-detached-sigs](https://github.com/gormint-Project/gormint-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+- Detached signatures will then be committed to the [steaddcoin-detached-sigs](https://github.com/steaddcoin-Project/steaddcoin-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
 Create (and optionally verify) the signed OS X binary:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=v${VERSION} ../gormint/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../gormint/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../gormint/contrib/gitian-descriptors/gitian-osx-signer.yml
-    mv build/out/gormint-osx-signed.dmg ../gormint-${VERSION}-osx.dmg
+    ./bin/gbuild -i --commit signature=v${VERSION} ../steaddcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../steaddcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../steaddcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+    mv build/out/steaddcoin-osx-signed.dmg ../steaddcoin-${VERSION}-osx.dmg
     popd
 
 Create (and optionally verify) the signed Windows binaries:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=v${VERSION} ../gormint/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../gormint/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../gormint/contrib/gitian-descriptors/gitian-win-signer.yml
-    mv build/out/gormint-*win64-setup.exe ../gormint-${VERSION}-win64-setup.exe
-    mv build/out/gormint-*win32-setup.exe ../gormint-${VERSION}-win32-setup.exe
+    ./bin/gbuild -i --commit signature=v${VERSION} ../steaddcoin/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../steaddcoin/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../steaddcoin/contrib/gitian-descriptors/gitian-win-signer.yml
+    mv build/out/steaddcoin-*win64-setup.exe ../steaddcoin-${VERSION}-win64-setup.exe
+    mv build/out/steaddcoin-*win32-setup.exe ../steaddcoin-${VERSION}-win32-setup.exe
     popd
 
 Commit your signature for the signed OS X/Windows binaries:
@@ -224,23 +224,23 @@ sha256sum * > SHA256SUMS
 
 The list of files should be:
 ```
-gormint-${VERSION}-aarch64-linux-gnu.tar.gz
-gormint-${VERSION}-arm-linux-gnueabihf.tar.gz
-gormint-${VERSION}-i686-pc-linux-gnu.tar.gz
-gormint-${VERSION}-x86_64-linux-gnu.tar.gz
-gormint-${VERSION}-osx64.tar.gz
-gormint-${VERSION}-osx.dmg
-gormint-${VERSION}.tar.gz
-gormint-${VERSION}-win32-setup.exe
-gormint-${VERSION}-win32.zip
-gormint-${VERSION}-win64-setup.exe
-gormint-${VERSION}-win64.zip
+steaddcoin-${VERSION}-aarch64-linux-gnu.tar.gz
+steaddcoin-${VERSION}-arm-linux-gnueabihf.tar.gz
+steaddcoin-${VERSION}-i686-pc-linux-gnu.tar.gz
+steaddcoin-${VERSION}-x86_64-linux-gnu.tar.gz
+steaddcoin-${VERSION}-osx64.tar.gz
+steaddcoin-${VERSION}-osx.dmg
+steaddcoin-${VERSION}.tar.gz
+steaddcoin-${VERSION}-win32-setup.exe
+steaddcoin-${VERSION}-win32.zip
+steaddcoin-${VERSION}-win64-setup.exe
+steaddcoin-${VERSION}-win64.zip
 ```
 The `*-debug*` files generated by the gitian build contain debug symbols
 for troubleshooting by developers. It is assumed that anyone that is interested
 in debugging can run gitian to generate the files for themselves. To avoid
 end-user confusion about which file to pick, as well as save storage
-space *do not upload these to the gormint.org server*.
+space *do not upload these to the steaddcoin.org server*.
 
 - GPG-sign it, delete the unsigned file:
 ```
@@ -256,10 +256,10 @@ Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spur
 
   - bitcointalk announcement thread
 
-  - Optionally twitter, reddit /r/gormint, ... but this will usually sort out itself
+  - Optionally twitter, reddit /r/steaddcoin, ... but this will usually sort out itself
 
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
-  - Create a [new GitHub release](https://github.com/gormint-Project/gormint/releases/new) with a link to the archived release notes.
+  - Create a [new GitHub release](https://github.com/steaddcoin-Project/steaddcoin/releases/new) with a link to the archived release notes.
 
   - Celebrate

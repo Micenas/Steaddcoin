@@ -1,25 +1,25 @@
-# /etc/conf.d/gormintd: config file for /etc/init.d/gormintd
+# /etc/conf.d/steaddcoind: config file for /etc/init.d/steaddcoind
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/gormint/gormint.conf"
+#BITCOIND_CONFIGFILE="/etc/steaddcoin/steaddcoin.conf"
 
 # What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
-#BITCOIND_PIDDIR="/var/run/gormintd"
+#BITCOIND_PIDDIR="/var/run/steaddcoind"
 
 # What filename to give the pidfile
-#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/gormintd.pid"
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/steaddcoind.pid"
 
-# Where to write gormintd data (be mindful that the blockchain is large)
-#BITCOIND_DATADIR="/var/lib/gormintd"
+# Where to write steaddcoind data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/steaddcoind"
 
-# User and group to own gormintd process
-#BITCOIND_USER="gormint"
-#BITCOIND_GROUP="gormint"
+# User and group to own steaddcoind process
+#BITCOIND_USER="steaddcoin"
+#BITCOIND_GROUP="steaddcoin"
 
-# Path to gormintd executable
-#BITCOIND_BIN="/usr/bin/gormintd"
+# Path to steaddcoind executable
+#BITCOIND_BIN="/usr/bin/steaddcoind"
 
-# Nice value to run gormintd under
+# Nice value to run steaddcoind under
 #BITCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)

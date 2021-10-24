@@ -5,7 +5,7 @@ UNSIGNED=$1
 SIGNATURE=$2
 ARCH=x86_64
 ROOTDIR=dist
-BUNDLE=${ROOTDIR}/gormint-Qt.app
+BUNDLE=${ROOTDIR}/steaddcoin-Qt.app
 TEMPDIR=signed.temp
 OUTDIR=signed-app
 
