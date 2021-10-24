@@ -368,10 +368,10 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xf7;
-        pchMessageStart[1] = 0xf7;
-        pchMessageStart[2] = 0xa3;
-        pchMessageStart[3] = 0xd2;
+        pchMessageStart[0] = 0xd2;
+        pchMessageStart[1] = 0xe8;
+        pchMessageStart[2] = 0xb2;
+        pchMessageStart[3] = 0xa3;
         vAlertPubKey = ParseHex("0000098d3ba6ba6e7423fa5cbd6a89e0a9a5348f88d332b44a5cb1a8b7ed2c1eaa335fc8dc4f012cb8241cc0bdafd6ca70c5f5448916e4e6f511bcd746ed57dc50");
         nDefaultPort = 53472;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // steaddcoin starting difficulty is 1 / 2^12
@@ -381,13 +381,13 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetTimespan = 2 * 60; //
+        nTargetTimespan = 1 * 60; //
         nTargetSpacing = 1 * 120;  // steaddcoin: 2 minute
-        nLastPOWBlock = 3000;
+        nLastPOWBlock = 15000;
         nMaturity = 6;
         nMasternodeCountDrift = 20;
         nModifierUpdateBlock = 615800;
-        nMaxMoneyOut = 91000000000 * COIN;
+        nMaxMoneyOut = 380000000 * COIN;
 
         const char* pszTimestamp = "steaddcoin is born";
         CMutableTransaction txNew;
@@ -400,26 +400,20 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1624057638;
+        genesis.nTime = 1635039244;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 2863367;
-
+        genesis.nNonce = 2985807;
 
         hashGenesisBlock = genesis.GetHash();
 
+        assert(hashGenesisBlock == uint256("0x226634096ae2b93f4f03e7318b1bfbd2f146af653f4b470e84e4e70b57d579c8"));
+        //assert(genesis.hashMerkleRoot == uint256("0x"));
 
-        assert(hashGenesisBlock == uint256("0x2ff03b9383d8af4d70635f392537d0a8fa7401bb7fe6f80d64bbd6f8bc4f7747"));
-        assert(genesis.hashMerkleRoot == uint256("0x83d7618987a3d26b2ad11364d08303f5da3e20e2c00be086d30c90c655cda808"));
+        vSeeds.push_back(CDNSSeedData("142.44.242.104","142.44.242.104"));     // Primary DNS Seeder 
+        vSeeds.push_back(CDNSSeedData("167.99.20.141","167.99.20.141"));
 
-        vSeeds.push_back(CDNSSeedData("155.138.240.229","155.138.240.229"));     // Primary DNS Seeder 
-        vSeeds.push_back(CDNSSeedData("45.77.64.20","45.77.64.20"));
-        vSeeds.push_back(CDNSSeedData("45.77.139.127","45.77.139.127"));
-        vSeeds.push_back(CDNSSeedData("66.42.66.228","66.42.66.228"));
-        vSeeds.push_back(CDNSSeedData("45.76.187.144","45.76.187.144"));
-        vSeeds.push_back(CDNSSeedData("207.180.231.200","207.180.231.200"));
-
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 38);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 39);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 63);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 64);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 212);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
