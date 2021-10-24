@@ -1,0 +1,26 @@
+[Unit]
+Description=gormint's distributed currency daemon
+After=network.target
+
+[Service]
+User=gormint
+Group=gormint
+
+Type=forking
+PIDFile=/var/lib/gormintd/gormintd.pid
+
+ExecStart=/usr/bin/gormintd -daemon -pid=/var/lib/gormintd/gormintd.pid \
+          -conf=/etc/gormint/gormint.conf -datadir=/var/lib/gormintd
+
+ExecStop=-/usr/bin/gormint-cli -conf=/etc/gormint/gormint.conf \
+         -datadir=/var/lib/gormintd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=gormint
+Comment=gormint P2P Cryptocurrency
+Comment[fr]=gormint, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=gormint, eşten eşe kriptografik sanal para birimi
+Exec=gormint-qt %u
+Terminal=false
+Type=Application
+Icon=gormint128
+MimeType=x-scheme-handler/gormint;
+Categories=Office;Finance;

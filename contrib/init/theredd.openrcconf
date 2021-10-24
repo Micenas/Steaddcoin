@@ -1,0 +1,26 @@
+# /etc/conf.d/gormintd: config file for /etc/init.d/gormintd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/gormint/gormint.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/gormintd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/gormintd.pid"
+
+# Where to write gormintd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/gormintd"
+
+# User and group to own gormintd process
+#BITCOIND_USER="gormint"
+#BITCOIND_GROUP="gormint"
+
+# Path to gormintd executable
+#BITCOIND_BIN="/usr/bin/gormintd"
+
+# Nice value to run gormintd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""
