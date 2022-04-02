@@ -115,7 +115,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
     CBlockIndex* prev = chainActive.Tip();
     if(prev->nHeight <= 1) txNew.vout[0].nValue = 62700000 * COIN;
-    if(prev->nHeight >= 2 && nHeight <= 30000) txNew.vout[0].nValue = 50 * COIN;
+    if(prev->nHeight <= 30000) txNew.vout[0].nValue = 50 * COIN;
     if(prev->nHeight >= 30001) txNew.vout[0].nValue = 0.50 * COIN;	
 
     pblock->vtx.push_back(txNew);
