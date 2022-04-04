@@ -383,7 +383,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; //
         nTargetSpacing = 1 * 120;  // steaddcoin: 2 minute
-        nLastPOWBlock = 15000;
+        nLastPOWBlock = 45000;
         nMaturity = 6;
         nMasternodeCountDrift = 20;
         nModifierUpdateBlock = 615800;
